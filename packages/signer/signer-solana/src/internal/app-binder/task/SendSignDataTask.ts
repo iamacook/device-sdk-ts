@@ -15,7 +15,7 @@ import {
 
 const PATH_SIZE = 4;
 
-type SignDataTaskArgs = {
+export type SignDataTaskArgs = {
   sendingData: Uint8Array;
   derivationPath: string;
   commandFactory: CommandFactory<Maybe<Signature>>;

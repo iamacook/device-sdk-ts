@@ -7,6 +7,9 @@ import {
   type GetAppConfigurationDAIntermediateValue,
   type GetAppConfigurationDAOutput,
   SignerSolanaBuilder,
+  type SignMessageDAError,
+  type SignMessageDAIntermediateValue,
+  type SignMessageDAOutput,
 } from "@ledgerhq/device-signer-kit-solana";
 
 import { DeviceActionsList } from "@/components/DeviceActionsView/DeviceActionsList";
@@ -52,19 +55,52 @@ export const SignerSolanaView: React.FC<{ sessionId: string }> = ({
         GetAddressDAIntermediateValue
       >,
       {
-        title: "Get app configuration",
+        title: "Sign off chain message",
         description:
-          "Perform all the actions necessary to get the Solana app configuration from the device",
-        executeDeviceAction: () => {
-          return signer.getAppConfiguration();
+          "Perform all the actions necessary to sign an off chain message with Solana app",
+        executeDeviceAction: ({ derivationPath, message }) => {
+          if (!signer) {
+            throw new Error("Signer not initialized");
+          }
+          return signer.signMessage(derivationPath, message);
         },
-        initialValues: {},
+        initialValues: {
+          derivationPath: "44'/60'/0'/0/0",
+          message: "Hello World",
+        },
         deviceModelId,
       } satisfies DeviceActionProps<
-        GetAppConfigurationDAOutput,
-        Record<string, never>,
-        GetAppConfigurationDAError,
-        GetAppConfigurationDAIntermediateValue
+        SignMessageDAOutput,
+        {
+          derivationPath: string;
+          message: string;
+        },
+        SignMessageDAError,
+        SignMessageDAIntermediateValue
+      >,
+      {
+        title: "Sign off chain message",
+        description:
+          "Perform all the actions necessary to sign an off chain message with Solana app",
+        executeDeviceAction: ({ derivationPath, message }) => {
+          if (!signer) {
+            throw new Error("Signer not initialized");
+          }
+          return signer.signMessage(derivationPath, message);
+        },
+        initialValues: {
+          derivationPath: "44'/60'/0'/0/0",
+          message: "Hello World",
+        },
+        deviceModelId,
+      } satisfies DeviceActionProps<
+        SignMessageDAOutput,
+        {
+          derivationPath: string;
+          message: string;
+        },
+        SignMessageDAError,
+        SignMessageDAIntermediateValue
       >,
     ],
     [deviceModelId, signer],

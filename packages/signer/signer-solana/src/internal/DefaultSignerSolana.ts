@@ -16,6 +16,7 @@ import { type SignerSolana } from "@api/SignerSolana";
 import { type GetAddressUseCase } from "./use-cases/address/GetAddressUseCase";
 import { type GetAppConfigurationUseCase } from "./use-cases/app-configuration/GetAppConfigurationUseCase";
 import { useCasesTypes } from "./use-cases/di/useCasesTypes";
+import { type SignMessageUseCase } from "./use-cases/message/SignMessageUseCase";
 import { makeContainer } from "./di";
 
 export type DefaultSignerSolanaConstructorArgs = {
@@ -42,7 +43,9 @@ export class DefaultSignerSolana implements SignerSolana {
     _derivationPath: string,
     _message: string,
   ): SignMessageDAReturnType {
-    return {} as SignMessageDAReturnType;
+    return this._container
+      .get<SignMessageUseCase>(useCasesTypes.SignMessageUseCase)
+      .execute(_derivationPath, _message);
   }
 
   getAddress(

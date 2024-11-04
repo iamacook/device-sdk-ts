@@ -3,6 +3,7 @@ import { ContainerModule } from "inversify";
 import { GetAddressUseCase } from "@internal/use-cases/address/GetAddressUseCase";
 import { GetAppConfigurationUseCase } from "@internal/use-cases/app-configuration/GetAppConfigurationUseCase";
 import { useCasesTypes } from "@internal/use-cases/di/useCasesTypes";
+import { SignMessageUseCase } from "@internal/use-cases/message/SignMessageUseCase";
 
 export const useCasesModuleFactory = () =>
   new ContainerModule(
@@ -19,5 +20,6 @@ export const useCasesModuleFactory = () =>
       bind(useCasesTypes.GetAppConfigurationUseCase).to(
         GetAppConfigurationUseCase,
       );
+      bind(useCasesTypes.SignMessageUseCase).to(SignMessageUseCase);
     },
   );
