@@ -86,6 +86,12 @@ importers:
       '@ledgerhq/device-transport-kit-mock-client':
         specifier: workspace:*
         version: link:../../packages/transport-mock
+      '@ledgerhq/device-transport-kit-web-ble':
+        specifier: workspace:*
+        version: link:../../packages/transport/web-ble
+      '@ledgerhq/device-transport-kit-web-hid':
+        specifier: workspace:*
+        version: link:../../packages/transport/web-hid
       '@ledgerhq/react-ui':
         specifier: ^0.16.2
         version: 0.16.2(@emotion/is-prop-valid@1.2.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react-native-svg@15.3.0(react-native@0.74.3(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.11)(react@18.3.1))(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
@@ -231,9 +237,6 @@ importers:
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
-      rxjs:
-        specifier: ^7.8.1
-        version: 7.8.1
       semver:
         specifier: ^7.6.3
         version: 7.6.3
@@ -265,12 +268,9 @@ importers:
       '@types/uuid':
         specifier: ^10.0.0
         version: 10.0.0
-      '@types/w3c-web-hid':
-        specifier: ^1.0.6
-        version: 1.0.6
-      '@types/web-bluetooth':
-        specifier: ^0.0.20
-        version: 0.0.20
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@22.9.0)(typescript@5.6.3)
@@ -561,6 +561,92 @@ importers:
       '@ledgerhq/tsconfig-dsdk':
         specifier: workspace:*
         version: link:../config/typescript
+
+  packages/transport/web-ble:
+    dependencies:
+      '@sentry/minimal':
+        specifier: ^6.19.7
+        version: 6.19.7
+      purify-ts:
+        specifier: ^2.1.0
+        version: 2.1.0
+      uuid:
+        specifier: ^10.0.0
+        version: 10.0.0
+    devDependencies:
+      '@ledgerhq/device-management-kit':
+        specifier: workspace:*
+        version: link:../../device-management-kit
+      '@ledgerhq/esbuild-tools':
+        specifier: workspace:*
+        version: link:../../tools/esbuild-tools
+      '@ledgerhq/eslint-config-dsdk':
+        specifier: workspace:*
+        version: link:../../config/eslint
+      '@ledgerhq/jest-config-dsdk':
+        specifier: workspace:*
+        version: link:../../config/jest
+      '@ledgerhq/prettier-config-dsdk':
+        specifier: workspace:*
+        version: link:../../config/prettier
+      '@ledgerhq/tsconfig-dsdk':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
+      '@types/web-bluetooth':
+        specifier: ^0.0.20
+        version: 0.0.20
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@types/node@22.9.0)(typescript@5.6.3)
+
+  packages/transport/web-hid:
+    dependencies:
+      '@sentry/minimal':
+        specifier: ^6.19.7
+        version: 6.19.7
+      purify-ts:
+        specifier: ^2.1.0
+        version: 2.1.0
+      uuid:
+        specifier: ^10.0.0
+        version: 10.0.0
+    devDependencies:
+      '@ledgerhq/device-management-kit':
+        specifier: workspace:*
+        version: link:../../device-management-kit
+      '@ledgerhq/esbuild-tools':
+        specifier: workspace:*
+        version: link:../../tools/esbuild-tools
+      '@ledgerhq/eslint-config-dsdk':
+        specifier: workspace:*
+        version: link:../../config/eslint
+      '@ledgerhq/jest-config-dsdk':
+        specifier: workspace:*
+        version: link:../../config/jest
+      '@ledgerhq/prettier-config-dsdk':
+        specifier: workspace:*
+        version: link:../../config/prettier
+      '@ledgerhq/tsconfig-dsdk':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
+      '@types/w3c-web-hid':
+        specifier: ^1.0.6
+        version: 1.0.6
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@types/node@22.9.0)(typescript@5.6.3)
 
   packages/trusted-apps:
     dependencies:
@@ -3144,11 +3230,6 @@ packages:
   acorn-walk@8.3.1:
     resolution: {integrity: sha512-TgUZgYvqZprrl7YldZNoa9OciCAyZR+Ejm9eXzKCmjsF5IKp/wgQ7Z/ZpjpGTIUPwrHQIcYeI8qDh4PsEwxMbw==}
     engines: {node: '>=0.4.0'}
-
-  acorn@8.13.0:
-    resolution: {integrity: sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
 
   acorn@8.14.0:
     resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
@@ -6925,9 +7006,6 @@ packages:
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
-  tslib@2.8.0:
-    resolution: {integrity: sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==}
-
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
@@ -10625,7 +10703,7 @@ snapshots:
   '@swc/helpers@0.5.5':
     dependencies:
       '@swc/counter': 0.1.3
-      tslib: 2.8.0
+      tslib: 2.8.1
 
   '@tippyjs/react@4.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -10996,8 +11074,6 @@ snapshots:
 
   acorn-walk@8.3.1: {}
 
-  acorn@8.13.0: {}
-
   acorn@8.14.0: {}
 
   aes-js@3.0.0: {}
@@ -11155,7 +11231,7 @@ snapshots:
 
   ast-types@0.13.4:
     dependencies:
-      tslib: 2.8.0
+      tslib: 2.8.1
 
   ast-types@0.15.2:
     dependencies:
@@ -12558,7 +12634,7 @@ snapshots:
 
   framer-motion@11.7.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      tslib: 2.8.0
+      tslib: 2.8.1
     optionalDependencies:
       '@emotion/is-prop-valid': 1.2.1
       react: 18.3.1
@@ -14936,7 +15012,7 @@ snapshots:
 
   rxjs@7.8.1:
     dependencies:
-      tslib: 2.8.0
+      tslib: 2.8.1
 
   safe-array-concat@1.1.2:
     dependencies:
@@ -15334,7 +15410,7 @@ snapshots:
   synckit@0.9.1:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.8.0
+      tslib: 2.8.1
 
   tapable@2.2.1: {}
 
@@ -15438,7 +15514,7 @@ snapshots:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 22.7.5
-      acorn: 8.13.0
+      acorn: 8.14.0
       acorn-walk: 8.3.1
       arg: 4.1.3
       create-require: 1.1.1
@@ -15457,7 +15533,7 @@ snapshots:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 22.9.0
-      acorn: 8.13.0
+      acorn: 8.14.0
       acorn-walk: 8.3.1
       arg: 4.1.3
       create-require: 1.1.1
@@ -15481,8 +15557,6 @@ snapshots:
   tslib@2.4.0: {}
 
   tslib@2.7.0: {}
-
-  tslib@2.8.0: {}
 
   tslib@2.8.1: {}
 

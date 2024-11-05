@@ -11,13 +11,15 @@
       "dependsOn": ["^build"]
     },
     "lint:fix": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "cache": false
     },
     "prettier": {
       "dependsOn": ["^prettier"]
     },
     "prettier:fix": {
-      "dependsOn": ["^prettier:fix"]
+      "dependsOn": ["^prettier:fix"],
+      "cache": false
     },
     "dev": {
       "cache": false,
